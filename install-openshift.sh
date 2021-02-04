@@ -171,11 +171,16 @@ fi
 
 export METRICS="True"
 export LOGGING="True"
+export MONITORING="True"
 
 memory=$(cat /proc/meminfo | grep MemTotal | sed "s/MemTotal:[ ]*\([0-9]*\) kB/\1/")
 
 if [ "$memory" -lt "4194304" ]; then
 	export METRICS="False"
+fi
+
+if [ "$memory" -lt "4194304" ]; then
+	export MONITORING="False"
 fi
 
 if [ "$memory" -lt "16777216" ]; then
